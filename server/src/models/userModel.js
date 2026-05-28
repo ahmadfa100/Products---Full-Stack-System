@@ -1,28 +1,28 @@
 import pool from "../config/db.js"
 
-export const createUserService = async(name, email, hashedPassword) =>{
+export const createUserService = async (name, email, hashedPassword) => {
     const result = await pool.query(`
         INSERT INTO users (name, email ,password)
         VALUES($1, $2, $3)
-        REUTRNING id, name ,email, created_at`,
-        [name,email,password]
+        RETURNING id, name ,email, created_at`,
+        [name, email, hashedPassword]
     );
     return result.rows[0];
 }
 
-export const getUserByEmail = async(email)=>{
-    const result = await(`
+export const getUserByEmailService = async (email) => {
+    const result = await (`
         SELECT * from users
          where email = $1 
         `, [email]);
-        return result.rows[0];
+    return result.rows[0];
 }
 
-export const getUserById = async(id)=>{
-    const result = await(`
+export const getUserByIdService = async (id) => {
+    const result = await (`
         SELECT id, name, email, created_at
         where id = $1 `,
-    [id]);
+        [id]);
 
     return result.rows[0]
 }

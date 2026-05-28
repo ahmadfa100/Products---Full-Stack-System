@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 import pool from "./config/db.js";
 import createProductsTable from "./data/productTable.js";
 import createUsersTable from "./data/userTable.js";
+import authRoutes from "./routes/authRoutes.js"
+import errorMiddleware from "./middlewares/errorMiddleware.js"
 
 dotenv.config();
 
@@ -18,6 +20,9 @@ app.use(cors());
 createUsersTable();
 createProductsTable();
 
+// Routes
+app.use("/api/auth", authRoutes)
+
 // Test DB connection
 app.get("/test-db-connection", async (req, res, next) => {
   try {
@@ -27,6 +32,9 @@ app.get("/test-db-connection", async (req, res, next) => {
     next(error);
   }
 });
+
+// Error Middleware
+app.use(errorMiddleware);
 
 // Run app
 app.listen(PORT, () => {
