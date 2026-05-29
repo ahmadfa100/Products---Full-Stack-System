@@ -1,7 +1,7 @@
 import pkg from "pg";
 import dotenv from "dotenv";
 
-const {Pool} = pkg;
+const { Pool } = pkg;
 dotenv.config();
 
 const pool = new Pool({
@@ -13,7 +13,7 @@ const pool = new Pool({
 
 })
 
-pool.on("connect", ()=>{
+pool.on("connect", () => {
     console.log("Connection pool established successfully")
 })
 export default pool;
