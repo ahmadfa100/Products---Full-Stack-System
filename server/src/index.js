@@ -5,6 +5,7 @@ import pool from "./config/db.js";
 import createProductsTable from "./data/productTable.js";
 import createUsersTable from "./data/userTable.js";
 import authRoutes from "./routes/authRoutes.js"
+import productRoutes from "./routes/productRoutes.js"
 import errorMiddleware from "./middlewares/errorMiddleware.js"
 
 dotenv.config();
@@ -22,6 +23,7 @@ createProductsTable();
 
 // Routes
 app.use("/api/auth", authRoutes)
+app.use("/api/products", productRoutes);
 
 // Test DB connection
 app.get("/test-db-connection", async (req, res, next) => {
