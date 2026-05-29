@@ -14,12 +14,24 @@ const handleResponse = (res, status, message, data = null) => {
   });
 };
 
+const getImageUrl = (req) => {
+  if (!req.file) {
+    return null;
+  }
+
+  return `/uploads/${req.file.filename}`;
+};
+
 export const createProduct = async (req, res, next) => {
-  const { title, description, image_url, price, category, stock } = req.body;
+  const { title, description, price, category, stock } = req.body;
 
   try {
     if (!title || !description || !price || !category) {
-      return handleResponse(res, 400, "Title, description, price, and category are required");
+      return handleResponse(
+        res,
+        400,
+        "Title, description, price, and category are required"
+      );
     }
 
     if (Number(price) <= 0) {
@@ -29,6 +41,8 @@ export const createProduct = async (req, res, next) => {
     if (stock !== undefined && Number(stock) < 0) {
       return handleResponse(res, 400, "Stock cannot be negative");
     }
+
+    const image_url = getImageUrl(req);
 
     const product = await createProductService(
       title,
@@ -73,11 +87,15 @@ export const getProductById = async (req, res, next) => {
 
 export const updateProduct = async (req, res, next) => {
   const { id } = req.params;
-  const { title, description, image_url, price, category, stock } = req.body;
+  const { title, description, price, category, stock, old_image_url } = req.body;
 
   try {
     if (!title || !description || !price || !category) {
-      return handleResponse(res, 400, "Title, description, price, and category are required");
+      return handleResponse(
+        res,
+        400,
+        "Title, description, price, and category are required"
+      );
     }
 
     if (Number(price) <= 0) {
@@ -87,6 +105,9 @@ export const updateProduct = async (req, res, next) => {
     if (stock !== undefined && Number(stock) < 0) {
       return handleResponse(res, 400, "Stock cannot be negative");
     }
+
+    const newImageUrl = getImageUrl(req);
+    const image_url = newImageUrl || old_image_url || null;
 
     const updatedProduct = await updateProductService(
       id,

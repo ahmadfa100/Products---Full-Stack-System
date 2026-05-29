@@ -16,6 +16,7 @@ const PORT = process.env.PORT || 3001;
 // Middleware
 app.use(express.json());
 app.use(cors());
+app.use("/uploads", express.static("uploads"));
 
 // Create tables
 createUsersTable();
