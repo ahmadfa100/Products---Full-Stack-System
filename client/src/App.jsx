@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 
+import MainLayout from "./layouts/MainLayout";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
@@ -20,7 +21,9 @@ function App() {
             path="/home"
             element={
               <ProtectedRoute>
-                <Home/>
+                <MainLayout>
+                  <Home/>
+                </MainLayout>
               </ProtectedRoute>
             }
           />
@@ -28,7 +31,9 @@ function App() {
             path="/manage-products"
             element={
               <ProtectedRoute>
-                <ManageProducts/>
+                <MainLayout>
+                  <ManageProducts/>
+                </MainLayout>
               </ProtectedRoute>
             }
           />
