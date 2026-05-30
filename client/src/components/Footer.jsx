@@ -5,14 +5,19 @@ const Footer = () => {
     <Box
       component="footer"
       sx={{
-        py: 2,
-        textAlign: "center",
-        bgcolor: "white",
-        borderTop: "1px solid #e0e0e0",
+        py: 3,
+        px: { xs: 2, sm: 4 },
+        backgroundColor: "#FFFFFF",
+        borderTop: "1px solid #E8E8F0",
+        display: "flex",
+        flexDirection: { xs: "column", sm: "row" },
+        alignItems: "center",
+        justifyContent: "space-between",
+        gap: 1,
       }}
     >
-      <Typography variant="body2" color="text.secondary">
-        © 2026 ProductHub. Full-stack PERN assessment project.
+      <Typography variant="body2" sx={{ color: "#5A5A7A", fontWeight: 500 }}>
+        © 2026 Ahmad Bani Hamad. Full-stack Developer.
       </Typography>
     </Box>
   );

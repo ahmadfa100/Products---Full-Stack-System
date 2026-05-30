@@ -1,0 +1,120 @@
+.table-container {
+  border-radius: 12px;
+  overflow-x: auto;
+  border: 1px solid #E8E8F0;
+  background-color: #FFFFFF;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+.product-avatar {
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 8px !important;
+  border: 1px solid #E8E8F0 !important;
+  transition: transform 0.2s ease;
+}
+
+.product-avatar:hover {
+  transform: scale(1.05);
+}
+
+.title-cell {
+  font-weight: 600 !important;
+  color: #1A1A2E !important;
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.price-cell {
+  font-weight: 700 !important;
+  color: #FF6A00 !important;
+}
+
+.desc-cell {
+  color: #5A5A7A !important;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.action-btn-edit {
+  color: #0277BD !important;
+  background-color: #E1F5FE !important;
+  border: 1px solid #B3E5FC !important;
+}
+
+.action-btn-edit:hover {
+  background-color: #B3E5FC !important;
+  border-color: #0277BD !important;
+}
+
+.action-btn-delete {
+  color: #D32F2F !important;
+  background-color: #FFEBEE !important;
+  border: 1px solid #FFCDD2 !important;
+}
+
+.action-btn-delete:hover {
+  background-color: #FFCDD2 !important;
+  border-color: #D32F2F !important;
+}
+
+.dialog-paper {
+  border-radius: 16px !important;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.1) !important;
+}
+
+.dialog-header {
+  padding: 24px 24px 8px 24px !important;
+}
+
+.dialog-content {
+  padding: 16px 24px !important;
+}
+
+.dialog-actions {
+  padding: 16px 24px 24px 24px !important;
+  gap: 12px;
+}
+
+.upload-btn {
+  padding: 12px !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  color: #5A5A7A !important;
+  border-color: #D0D0E0 !important;
+  background-color: #FAFAFA !important;
+}
+
+.upload-btn:hover {
+  border-color: #A0A0B8 !important;
+  background-color: #F5F6F8 !important;
+}
+
+.upload-btn-active {
+  color: #2E7D32 !important;
+  border-color: #A5D6A7 !important;
+  background-color: #E8F5E9 !important;
+}
+
+.upload-btn-active:hover {
+  border-color: #2E7D32 !important;
+  background-color: #C8E6C9 !important;
+}
+
+.delete-icon-wrapper {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  background-color: #FFEBEE;
+  border: 1px solid #FFCDD2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: #D32F2F;
+}
