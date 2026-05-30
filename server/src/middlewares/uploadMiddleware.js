@@ -6,22 +6,21 @@ const storage = multer.diskStorage({
     cb(null, "uploads");
   },
 
-  filename:(req,file,cb)=>{
-    const uniqueName = Data.now() + '-' + Math.random(Math.random()*1e9);
+  filename: (req, file, cb) => {
+    const uniqueName = Date.now() + "-" + Math.round(Math.random() * 1e9);
     const ext = path.extname(file.originalname);
 
-    cb(null,uniqueName,ext);
-  }
-
+    cb(null, uniqueName + ext);
+  },
 });
 
-const fileFilter=(req,file,cb)=>{
-    if(file.mimetype.startWith("image/")){
-        cb(null,true);
-    }else{
-        cb(new Error("Only image files are allowed"),false)
-    }
-}
+const fileFilter = (req, file, cb) => {
+  if (file.mimetype.startsWith("image/")) {
+    cb(null, true);
+  } else {
+    cb(new Error("Only image files are allowed"), false);
+  }
+};
 
 const upload = multer({
   storage,

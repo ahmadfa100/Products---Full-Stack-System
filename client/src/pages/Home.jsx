@@ -12,31 +12,44 @@ import {
 } from "@mui/material";
 import api from "../api/axios";
 
-const Home=()=>{
-  const [products, setProducts] = useState([])
-  const [loading, setLoading] = useState(true)
+const Home = () => {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  const fetchProducts = async()=>{
-    try{
+  const getFullImageUrl = (imageUrl) => {
+    if (!imageUrl) {
+      return "https://via.placeholder.com/600x400?text=Product+Image";
+    }
+
+    if (imageUrl.startsWith("http")) {
+      return imageUrl;
+    }
+
+    return `http://localhost:3001${imageUrl}`;
+  };
+
+  const fetchProducts = async () => {
+    try {
       setLoading(true);
-      setError("")
-      const response = await api.get("/products")
+      setError("");
+
+      const response = await api.get("/products");
 
       setProducts(response.data.data);
-    }catch(err){
-      const message = 
-      err.response?.data?.message || "Falied to fetch  products";
+    } catch (err) {
+      const message =
+        err.response?.data?.message || "Failed to fetch products.";
 
-      setError = message;
-    }finally{
+      setError(message);
+    } finally {
       setLoading(false);
     }
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     fetchProducts();
-  },[]);
+  }, []);
 
   if (loading) {
     return (
@@ -53,7 +66,7 @@ const Home=()=>{
     );
   }
 
-    return (
+  return (
     <Container maxWidth="lg">
       <Box sx={{ mb: 4 }}>
         <Typography variant="h4" sx={{ fontWeight: "bold", mb: 1 }}>
@@ -94,21 +107,27 @@ const Home=()=>{
               display: "flex",
               flexDirection: "column",
               borderRadius: 3,
+              overflow: "hidden",
             }}
           >
             <CardMedia
               component="img"
               height="190"
-              image={
-                product.image_url ||
-                "https://via.placeholder.com/600x400?text=Product+Image"
-              }
+              image={getFullImageUrl(product.image_url)}
               alt={product.title}
               sx={{ objectFit: "cover" }}
             />
 
             <CardContent sx={{ flexGrow: 1 }}>
-              <Box sx={{ display: "flex", justifyContent: "space-between", mb: 1 }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "flex-start",
+                  gap: 1,
+                  mb: 1,
+                }}
+              >
                 <Typography variant="h6" sx={{ fontWeight: "bold" }}>
                   {product.title}
                 </Typography>
@@ -140,4 +159,3 @@ const Home=()=>{
 };
 
 export default Home;
-
