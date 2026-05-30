@@ -47,7 +47,7 @@ The application includes authentication, protected routes, product CRUD operatio
 ---
 
 ## 📁 Folder Structure
-
+```
 Products-System/
 │
 ├── client/
@@ -93,7 +93,7 @@ Products-System/
         │   ├── authRoutes.js
         │   └── productRoutes.js
         └── index.js
-
+```
 ---
 
 ## ⚙️ Project Setup
